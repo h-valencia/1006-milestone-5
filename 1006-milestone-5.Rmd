@@ -96,9 +96,11 @@ plot <- google %>%
 shift_axis(plot, 0)
 ```
 
-While trying to replicate the only table that is in my paper, I have come to realize that there is a dataset missing from the dataverse (deaths-age-public.dta), and it is the sole dataset used in making the table. I have emailed the paper's author to try to obtain the dataset and recreate the table. For now, I have just created a regression table using th
+### Appendix
 
-### About
+While trying to replicate the only table that is in my paper, I have come to realize that there is a dataset missing from the dataverse (deaths-age-public.dta), and it is the sole dataset used in making the table. I have emailed the paper's author to try to obtain the dataset to recreate the table. 
+
+### Overview
 This replication paper takes a look at gun sales, background checks, and google search data in the aftermath of the Sandy Hook school shooting that took place on December 14th, 2012. It is hard for one to not know about the atrocities that took place in Newtown, Connecticut that day, as innocent school children and their teachers were murdered at school. Since then, many reforms have been put in place for gun control and school safety alike. In the immediate aftermath, however, gun sales and spiked and google searches about buying and cleaning guns soared. People knew that the number of background checks were going to increase to prevent further events like this from happening. This paper analyzes, specifically, whether there was an increase in the number of accidental gun deaths in the five-month period following this event, which could then be attributed to the increase in gun sales. The authors also took a look at accidental firearm deaths by state, so that they could see whether states with a larger increase in firearm sales also had an increase in the accidental deaths. To run this analysis, they calculated death rates among children and among adults and ran regressions, controlling for trends and seasonal patterns. In the end, the authors concluded that "an additional 60 deaths overall, including 20 children,
 resulted from unintentional shootings in the immediate aftermath of Sandy Hook" (Levine et al. 1).
 
