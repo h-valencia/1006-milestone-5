@@ -2,9 +2,10 @@
 title: "Milestone 5"
 author: "Hannah Valencia"
 date: "3/30/2020"
-output:
-  pdf_document: default
-  html_document: default
+output: pdf_document
+bibliography: bibliography.bib
+biblio-style: "apalike"
+link-citations: true
 ---
 
 ```{r setup, include=FALSE}
@@ -40,7 +41,12 @@ colnames(google)[1:3] <- c("week", "clean_gun", "buy_gun")
 google$week <- as.Date(google$week , format = "%Y-%m-%d")
 ```
 
-```{r}
+```{r ShiftAxis}
+
+# Creating a function for shifting the axis labels to the line y=0 instead of having it hover slightly below. 
+# For aesthetic purposes.
+# Function obtained from https://stackoverflow.com/questions/39071002/moving-x-or-y-axis-together-with-tick-labels-to-the-middle-of-a-single-ggplot-n, user baptiste.
+
 shift_axis <- function(p, y=0){
   g <- ggplotGrob(p)
   dummy <- data.frame(y=y)
@@ -54,11 +60,21 @@ shift_axis <- function(p, y=0){
 }
 ```
 
-```{r}
-rects <- data.frame(xstart = as.POSIXct('2012-12-14'), xend = as.POSIXct('2013-04-14'))
-```
 
-```{r}
+```{r CreateGraphic}
+
+# Using ggplot with geom_line to reproduce Fig. 1 from my paper.
+# Creating two lines on the same graph, for google searches of "clean gun" and of "buy gun", each with a different color.
+# Using annotate to create a shaded rectangle in the "Post-Sandy Hook Window" which is the 4 months following the shooting. Set alpha to 0.2 to make it see through.
+# Set the x scale to have breaks every year.
+# Set the y scale to have breaks every 20 from 1 to 120.
+# Added labels to the axes and a caption.
+# Changed the graph theme to look more like the one in the paper being reproduced.
+# Removed the vertical lines and changed the horizontal line darkness and where they are located.
+# Changed the location and size of the caption.
+# Added text onto the graph.
+# Used the shift_axis function to move the labels up to the y=0 line and remove the weird space.
+
 plot <- google %>%
   ggplot(aes(x = week)) +
   geom_line(aes(y = clean_gun), color = "black") +
@@ -80,12 +96,24 @@ plot <- google %>%
 shift_axis(plot, 0)
 ```
 
+While trying to replicate the only table that is in my paper, I have come to realize that there is a dataset missing from the dataverse (deaths-age-public.dta), and it is the sole dataset used in making the table. I have emailed the paper's author to try to obtain the dataset and recreate the table. For now, I have just created a regression table using th
 
+### About
+This replication paper takes a look at gun sales, background checks, and google search data in the aftermath of the Sandy Hook school shooting that took place on December 14th, 2012. It is hard for one to not know about the atrocities that took place in Newtown, Connecticut that day, as innocent school children and their teachers were murdered at school. Since then, many reforms have been put in place for gun control and school safety alike. In the immediate aftermath, however, gun sales and spiked and google searches about buying and cleaning guns soared. People knew that the number of background checks were going to increase to prevent further events like this from happening. This paper analyzes, specifically, whether there was an increase in the number of accidental gun deaths in the five-month period following this event, which could then be attributed to the increase in gun sales. The authors also took a look at accidental firearm deaths by state, so that they could see whether states with a larger increase in firearm sales also had an increase in the accidental deaths. To run this analysis, they calculated death rates among children and among adults and ran regressions, controlling for trends and seasonal patterns. In the end, the authors concluded that "an additional 60 deaths overall, including 20 children,
+resulted from unintentional shootings in the immediate aftermath of Sandy Hook" (Levine et al. 1).
 
+### Footnote
+This is a PDF document for my Gov 1006 final project Milestone 5. I have a GitHub repo with all relevant materials for this milestone. ^[My GitHub repo can be found following this url: https://github.com/h-valencia/1006-milestone-4]
 
+### References
 
-
-
+[@R-ggplot2]
+[@R-knitr]
+[@knitr2015]
+[@knitr2014]
+[@R-ggplot22016]
+[@R-haven]
+[@report]
 
 
 
